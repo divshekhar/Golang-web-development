@@ -37,7 +37,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/", renderTemplate).Methods("GET")
 	fileServer := http.FileServer(http.Dir("./Static"))
-	router.PathPrefix("/resources").Handler(http.StripPrefix("/resources", fileServer))
+	router.PathPrefix("/").Handler(http.StripPrefix("/resources", fileServer))
 	err := http.ListenAndServe(Host+":"+Port, router)
 	if err != nil {
 		log.Fatal("Error Starting the HTTP Server :", err)
